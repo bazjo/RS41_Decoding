@@ -29,9 +29,9 @@ The difference between FSK and GFSK is that GFSK transitions more smoothly betwe
 
 # How to get from Audio to Data
 
-What happens when we decode a FSK-encoded signal with an FM demodulator (e.g. our receiver or RTL-SDR)? The FM decoder just sees the rapid change between to frequncies. during the change, there is an very high frequency, and while the symbols are sent, there is no change at all. What waveform does that remind us of - a rectangular wave, right! So what comes out of our receiver really just is the binary bitstream which endodes the sondes data. However, as the receiver does not know anything about how we defined the symbols, which means that a 1 might end up as a 0 and vice versa, meaning the signal might be inverted.
+What happens when we decode a FSK-encoded signal with an FM demodulator (e.g. our receiver or RTL-SDR)? The FM decoder just sees the rapid change between two frequencies. During the change, there is an very high frequency, and while the symbols are sent, there is no change at all. What waveform does that remind us of - a rectangle, right! So what comes out of our receiver really is just the binary bitstream which endodes the sondes data. However, the receiver does not know anything about the symbols are defined, which means that a 1 might end up as a 0 and vice versa, meaning the signal might be inverted.
 
-For GFSK it's really the same, just your rectangle is looking a bit more "messed up" as it effectively was low-pass filtered for transmission.
+For GFSK it's really the same, just that your rectangle is looking a bit more "messed up" as it effectively was low-pass filtered for transmission.
 
 This defines the first steps we have to perform on our audio signal.
 
@@ -40,5 +40,35 @@ This defines the first steps we have to perform on our audio signal.
 
 # What did we actually obtain here
 
+The second step above is missing, and that is for a reason. As you know, the RS41 is not transmitting continuously, there is a pause between the frames. As we can see from the datasheet, the sonde is transmitting one frame of data every second at a baud rate of 4800 symbols/second. If we take a look at an audio recording, we can identify two parts which compose a frame.
+
+First there is a preamble which is just a bunch of 1s and 0s alternating, which is the followed by the data. Here's an exercise for you: To which audible frequency does the preamble convert, when it is decoded and given out through a loudspeaker?
+
+4800 Baud means there are 4800 spots for either a 1 or a 0 in the data stream. As each period of a frequncy consist of both a positive and a negative half-wave this translates to an audio frequency of 2.4 kHz. We just found the characteristic "beep" in front of every frame, which makes the sonde sound so much like the first sputnik satellite, which also transmitted pressure and temperature through it's beeps.
+
+If we interpret the preamble as binary data however, it consists of XX bits and has a length of xx ms. The frame which it leads is 320* bytes long and thus counts just over 533 ms.
+
+If we take a look on the bytes that are send after the preamble, we can find that those are the same for every sonde. This is the header consisting of 8 bytes. If you would read it as it displayed when taking a look at the waverform, it would read as 0xXXXXXXXXX, but as this is not what it really means.
+
+The sonde data is in fact xor-scrambled before sending, but not as a crude way of stopping is from decoding it, but to make sure that there always a lot of 0-1 changes in the data as the baud rate has to be matched by the receiver. This is called data whitening. The xor-value is a 64 byte long pseudorandom number generated with a known lfsr with with a known initialize and thus can be hardcoded into the decoder.
+
+So here are steps two and for in our decoding chain.
+
+2. check for sign changes that correspond to the bitate of the sonde and find out whether the recieved data matches the known preamble or header. If that is the case, get the raw data for the rest of the frame and start processing the frame
+4. descramble the frame by xor-ing it with the known pseudorandom sequence.
 
 # RS41 Frame Format
+
+If you did all of the above, you will end up with a frame which will look somewhat like this (except you had a sonde which transmitts an exteded frame, for example an ozone sonde)
+
+###PIC###
+
+The general structure of each frame is as follows.
+
+Bytes [0x000-0x007] contain 8 bytes header, which is always the same.
+
+After that follow 48 bytes of reed-solomon error correction data at [0x008-0x037], which can be used to identify an correct transmission errors.
+
+And after this there is a varying number of blocks, which share a common structure. A block consist of 2 bytes head, its data, and two bits tail. The first byte of the head is the block id which is unique for each type of block. The second byte is the length of the block, without head and tail. The tail finally is the CRC-16 over the data part of the block.
+
+Now, please go to the right file/folder for your type of sonde and continue reading there.
