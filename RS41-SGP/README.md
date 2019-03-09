@@ -2,7 +2,7 @@
 The RS41-SGP is the sonde mos often used in germany, and as it's frame has very much the same structure as the one of the -SG, the main examination shall be conducted only here.
 
 A Frame of a RS41-SGP looks like the following
-![RS_41-SGP_frame](__used_asset__/pic_RS_41-SGP_frame.png?raw=true "RS_41-SGP_frame")
+![RS41-SGP_frame](__used_asset__/pic_RS41-SGP_frame.png?raw=true "RS41-SGP_frame")
 
 There are six different blocks inside this frame:
 1. [\[0x039-0x064\] 44(40) Byte 79-STATUS](#79-STATUS)
@@ -15,10 +15,6 @@ There are six different blocks inside this frame:
 
 
 
-1. [How to obtain (G)FSK Data in general](#how-to-obtain-gfsk-data-in-general)
-2. [How to get from Audio to Data](#how-to-get-from-audio-to-data)
-3. [What did we actually obtain here?](#what-did-we-actually-obtain-here)
-4. [RS41 Frame Format](#rs41-frame-format)
 
 # How to obtain (G)FSK Data in general
 For a more detailed explanation, refer to [Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying).
