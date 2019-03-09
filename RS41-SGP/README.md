@@ -146,7 +146,62 @@ The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format
 | `[0x14]` | uint8 | `0x0C` | 1.2 | pDOP\*10 Position DOP |
 
 # \#76-EMPTY
-The 76-EMPTY block just contains a variable amount of zeros to fill up some space
+The 76-EMPTY block just contains a variable amount of zeros to fill up some space.
 
 # Subframe
+The subframe consist of 51 \* 16 = 816 Bytes. It is mostly static, but some parts, for example the last 16 bytes, change quite a lot as is discussed in the section about the RS41-SGMs subframe.
 
+Below is an image of the subframe of an RS41-SGP. Highlighted in colors are
+* bright yellow - subframe parts used by the RS41 Tracker
+* pale yellow - values which could contain useful infomation, most often float32
+* pale green - subframe parts used by zilog80s decoder
+* pale red - additional decoded parts
+
+This example is not from the same sonde as the frame which was analyzed above!
+
+![rs41-sgp_subframe](__used_asset__/pic_rs41-sgp_subframe.png?raw=true "rs41-sgp_subframe")
+
+## RS41 Tracker
+The RS41 Tracker uses the following subframe parts
+
+```
+0x010: Frequency/Firmware
+0x020: Burstkill Status
+0x050-0x060: Temperature + Humidity
+0x070: Humidity
+0x120-0x130: Humidity
+0x210: Sonde Type, Pressure + Humidity
+0x250-0x2A: Pressure + Humidity
+0x310: Burstkill Timer
+```
+
+## zilog80s decoder
+zilog80s decoder uses the following subframe parts (some additional ones are added by me)
+
+Frequency ic calculated by the formula `freq = 400 MHz + (freq upper + (freq lower / 255)) * 0.04 MHz`.
+
+| address  | datatype | decoded data | function |
+| --- | --- | --- | --- | --- |
+| `[0x002]` | uint8 | `0x80` | freq lower |
+| `[0x003]` | uint8 | 132 | freq upper |
+| `[0x015]` | uint16 | `0x4EF6` = 20214 | firmware version |
+| `[0x02B]` | uint8 | 0 | burstkill status |
+| `[0x]` | float32 | 750.0 | lower reference value rf1 |
+| `[0x]` | float32 | 1100.0 | upper reference value rf2 |
+| `[0x]` | float32 | -243.9108 | constants temperature tempmeas co1[0] |
+| `[0x]` | float32 | 0.187654 | constants temperature tempmeas co1[1] |
+| `[0x]` | float32 | 8.2e-06 | constants temperature tempmeas co1[2] |
+| `[0x]` | float32 | 1.279928 | calibration temperature tempmeas calT1[0] |
+| `[0x]` | float32 | -0.063965678 | calibration temperature tempmeas calT1[1] |
+| `[0x]` | float32 | 0.0038336662 | calibration temperature tempmeas calT1[2] |
+| `[0x]` | float32 | -243.9108 | constants temperature humimeas co2[0] |
+| `[0x]` | float32 | 0.187654 | constants temperature humimeas co2[1] |
+| `[0x]` | float32 | 8.2e-06 | constants temperature humimeas co2[2] |
+| `[0x]` | float32 | 1.3234462 | calibration temperature humimeas calT1[0] |
+| `[0x]` | float32 | -0.01772682 | calibration temperature humimeas calT1[1] |
+| `[0x]` | float32 | 0.0073917112 | calibration temperature humimeas calT1[2] |
+| `[0x]` | char[10] | "RS41-SGP  " | sonde type |
+| `[0x]` | char[10] | "RSM421    " | mainboard type |
+| `[0x]` | char[10] | "P2510419 " | mainboard serial |
+| `[0x]` | char[10] | "P2670962  " | pressure  serial |
+| `[0x]` | uint16 | 30600 s | burstkill timer |
