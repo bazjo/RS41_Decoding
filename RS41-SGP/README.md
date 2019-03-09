@@ -5,12 +5,12 @@ A Frame of a RS41-SGP looks like the following
 ![RS_41-SGP_frame](__used_asset__/pic_RS_41-SGP_frame.png?raw=true "RS_41-SGP_frame")
 
 There are six different blocks inside this frame:
-[\[0x039-0x064\] 44(40) Byte 79-STATUS](#79-STATUS)
-[\[0x065-0x092\] 46(42) Byte 7A-MEAS]
-[\[0x093-0x0B4\] 34(30) Byte 7C-GPSINFO]
-[\[0x0B5-0x111\] 93(89) Byte 7D-GPSRAW]
-[\[0x112-0x12A\] 25(21) Byte 7B-GPSPOS]
-[\[0x12B-0x13F\] 21(17) Byte 76-EMPTY]
+1. [\[0x039-0x064\] 44(40) Byte 79-STATUS](#79-STATUS)
+2. [\[0x065-0x092\] 46(42) Byte 7A-MEAS]
+3. [\[0x093-0x0B4\] 34(30) Byte 7C-GPSINFO]
+4. [\[0x0B5-0x111\] 93(89) Byte 7D-GPSRAW]
+5. [\[0x112-0x12A\] 25(21) Byte 7B-GPSPOS]
+6. [\[0x12B-0x13F\] 21(17) Byte 76-EMPTY]
 
 
 
