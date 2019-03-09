@@ -13,6 +13,8 @@ There are six different blocks inside this frame:
 5. [7B-GPSPOS](#7B-GPSPOS)
 6. [76-EMPTY](#76-EMPTY)
 
+Also there an examination of the [subframe](#Subframe)
+
 # \#79-STATUS
 The 79-STATUS block includes such things as Frame#, Serial and battery voltage, but also there are some bytes whose purpose is not known at this time. Any guesses are welcome.
 
@@ -142,4 +144,9 @@ The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format
 | `[0x12]` | uint8 | `0x0D` | 13 | Number of SVs used in Nav Solution |
 | `[0x13]` | uint8 | `0x01` | 10 cm/s | sAcc/10 Speed Accuracy Estimate |
 | `[0x14]` | uint8 | `0x0C` | 1.2 | pDOP\*10 Position DOP |
+
+# \#76-EMPTY
+The 76-EMPTY block just contains a variable amount of zeros to fill up some space
+
+# Subframe
 
