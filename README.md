@@ -40,9 +40,9 @@ For GFSK it's really the same, just that your rectangle is looking a bit more "m
 
 This defines the first steps we have to perform with our audio signal.
 
-    1/. Check for every sign change in the received audio file and interpret it as a byte change.
+   1/. Check for every sign change in the received audio file and interpret it as a byte change.
 
-    3/. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
+   3/. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
 
 # What did we actually obtain here
 
