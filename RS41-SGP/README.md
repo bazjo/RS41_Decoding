@@ -1,5 +1,5 @@
 # RS41-SGP
-The RS41-SGP is the sonde mos often used in germany, and as it's frame has very much the same structure as the one of the -SG, the main examination shall be conducted only here.
+The RS41-SGP is the sonde most often used in germany, and as it's frame has very much the same structure as the one of the -SG, the main examination shall be conducted only here.
 
 A Frame of a RS41-SGP looks like the following
 
@@ -14,18 +14,20 @@ There are six different blocks inside this frame:
 6. [76-EMPTY](#76-EMPTY)
 
 # \#79-STATUS
-test
+The 79-STATUS block includes such things as Frame#, Serial and battery voltage, but also there are some bytes whose purpose is not known at this time. Any guesses are welcome.
+
+Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently tranmitted is indicated by the Subframe#
 
 ```
-The whole XOR-mask is as follows:
-0x96, 0x83, 0x3E, 0x51, 0xB1, 0x49, 0x08, 0x98,
-0x32, 0x05, 0x59, 0x0E, 0xF9, 0x44, 0xC6, 0x26,
-0x21, 0x60, 0xC2, 0xEA, 0x79, 0x5D, 0x6D, 0xA1,
-0x54, 0x69, 0x47, 0x0C, 0xDC, 0xE8, 0x5C, 0xF1,
-0xF7, 0x76, 0x82, 0x7F, 0x07, 0x99, 0xA2, 0x2C,
-0x93, 0x7C, 0x30, 0x63, 0xF5, 0x10, 0x2E, 0x61,
-0xD0, 0xBC, 0xB4, 0xB6, 0x06, 0xAA, 0xF4, 0x23,
-0x78, 0x6E, 0x3B, 0xAE, 0xBF, 0x7B, 0x4C, 0xC1
+[0x00] 0x031E uint8 Frame# (7683)
+[0x02] 0x5032373430333837 char[8] Serial (P2740387)
+[0x0A] 0x1A0000 uint24 battery voltage * 10 (2.6)
+[0x0D] 0x030000 uint24? mostly static value (3) -purpose unknown
+[0x10] 0x150000 uint24? changes between 0x13 and 0x16 -purpose unknown
+[0x13] 0x5D increases and decreases very slowly -purpose unknown
+[0x14] 0x000732 static value 0x000732 -purpose unknown
+[0x17] 0x20 Subframe# (32/51)
+[0x18] 0xC966B54100004040FFFFFFC6FFFFFFC6 Subframe
 ```
 
 
