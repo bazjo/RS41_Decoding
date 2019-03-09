@@ -178,7 +178,7 @@ The RS41 Tracker uses the following subframe parts
 ## zilog80s decoder
 zilog80s decoder uses the following subframe parts (some additional ones are added by me)
 
-Frequency ic calculated by the formula `freq = 400 MHz + (freq upper + (freq lower / 255)) * 0.04 MHz`.
+Frequency is calculated by the formula `freq = 400 MHz + (freq upper + (freq lower / 255)) * 0.04 MHz`.
 
 | address  | datatype | decoded data | function |
 | --- | --- | --- | --- |
@@ -186,22 +186,22 @@ Frequency ic calculated by the formula `freq = 400 MHz + (freq upper + (freq low
 | `[0x003]` | uint8 | 132 | freq upper |
 | `[0x015]` | uint16 | `0x4EF6` = 20214 | firmware version |
 | `[0x02B]` | uint8 | 0 | burstkill status |
-| `[0x]` | float32 | 750.0 | lower reference value rf1 |
-| `[0x]` | float32 | 1100.0 | upper reference value rf2 |
-| `[0x]` | float32 | -243.9108 | constants temperature tempmeas co1[0] |
-| `[0x]` | float32 | 0.187654 | constants temperature tempmeas co1[1] |
-| `[0x]` | float32 | 8.2e-06 | constants temperature tempmeas co1[2] |
-| `[0x]` | float32 | 1.279928 | calibration temperature tempmeas calT1[0] |
-| `[0x]` | float32 | -0.063965678 | calibration temperature tempmeas calT1[1] |
-| `[0x]` | float32 | 0.0038336662 | calibration temperature tempmeas calT1[2] |
-| `[0x]` | float32 | -243.9108 | constants temperature humimeas co2[0] |
-| `[0x]` | float32 | 0.187654 | constants temperature humimeas co2[1] |
-| `[0x]` | float32 | 8.2e-06 | constants temperature humimeas co2[2] |
-| `[0x]` | float32 | 1.3234462 | calibration temperature humimeas calT1[0] |
-| `[0x]` | float32 | -0.01772682 | calibration temperature humimeas calT1[1] |
-| `[0x]` | float32 | 0.0073917112 | calibration temperature humimeas calT1[2] |
-| `[0x]` | char[10] | "RS41-SGP  " | sonde type |
-| `[0x]` | char[10] | "RSM421    " | mainboard type |
-| `[0x]` | char[10] | "P2510419 " | mainboard serial |
-| `[0x]` | char[10] | "P2670962  " | pressure  serial |
-| `[0x]` | uint16 | 30600 s | burstkill timer |
+| `[0x03D]` | float32 | 750.0 | lower reference value rf1 |
+| `[0x041]` | float32 | 1100.0 | upper reference value rf2 |
+| `[0x04D]` | float32 | -243.9108 | constants temperature tempmeas co1[0] |
+| `[0x051]` | float32 | 0.187654 | constants temperature tempmeas co1[1] |
+| `[0x055]` | float32 | 8.2e-06 | constants temperature tempmeas co1[2] |
+| `[0x059]` | float32 | 1.279928 | calibration temperature tempmeas calT1[0] |
+| `[0x05D]` | float32 | -0.063965678 | calibration temperature tempmeas calT1[1] |
+| `[0x061]` | float32 | 0.0038336662 | calibration temperature tempmeas calT1[2] |
+| `[0x125]` | float32 | -243.9108 | constants temperature humimeas co2[0] |
+| `[0x129]` | float32 | 0.187654 | constants temperature humimeas co2[1] |
+| `[0x12D]` | float32 | 8.2e-06 | constants temperature humimeas co2[2] |
+| `[0x131]` | float32 | 1.3234462 | calibration temperature humimeas calT1[0] |
+| `[0x135]` | float32 | -0.01772682 | calibration temperature humimeas calT1[1] |
+| `[0x139]` | float32 | 0.0073917112 | calibration temperature humimeas calT1[2] |
+| `[0x218]` | char[10] | "RS41-SGP  " | sonde type |
+| `[0x222]` | char[10] | "RSM421    " | mainboard type |
+| `[0x22C]` | char[10] | "P2510419 " | mainboard serial |
+| `[0x243]` | char[10] | "P2670962  " | pressure  serial |
+| `[0x316]` | uint16 | 30600 s | burstkill timer |
