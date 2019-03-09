@@ -42,8 +42,7 @@ What happens when we decode a FSK-encoded signal with a FM demodulator (e.g. our
 
 For GFSK it's really the same, just that your rectangle is looking a bit more "messed up" as it effectively was low-pass filtered for transmission.
 
-###PIC RAW FSK without attachments###
-![pic_whole_frame](__used_asset__/pic_whole_frame.png?raw=true "pic_whole_frame")
+![raw_fsk_transmission](__used_asset__/pic_raw_fsk_transmission.png?raw=true "raw_fsk_transmission")
 
 This defines the first steps we have to perform with our audio signal.
 
@@ -55,7 +54,7 @@ This defines the first steps we have to perform with our audio signal.
 
 The second step above is missing, and that is for a reason. As you know, the RS41 is not transmitting continuously, there is a pause between the frames. As we can see from the datasheet, the sonde is transmitting one frame of data every second at a baud rate of 4800 symbols/second. If we take a look at an audio recording, we can identify two parts which compose a frame.
 
-###PIC whole frame###
+![whole_frame](__used_asset__/pic_whole_frame.png?raw=true "whole_frame")
 
 First, there is a preamble which is just a bunch of 0s and 1s alternating, which is then followed by the data. Here's an exercise for you: To which audible frequency does the preamble convert, when it is FM-demodulated and given out through a loudspeaker?
 
@@ -67,7 +66,7 @@ If we interpret the preamble as binary data however, it consists of 320 bits and
 
 If we than take a look at the bytes that are sent after the preamble, we can find that those are the same for every sonde. This is the header consisting of 8 bytes. If you would read it as it is displayed when taking a look at the waverform, it would read as 0b0000100001101101010100111000100001000100011010010100100000011111, but how do we have to read this? This bitstream is little endian encoded, both bytewise and bitwise. That means the first nibble 0b0000 translates to 0x0, the second 0b1000 to 0x1. The first byte than reads as 0x10. The whole Header than can be decoded as 0x10B6CA11229612F8.
 
-###PIC SONDE DATA WITH ANNOTATED nibbles
+![sonde_data_with_annotations](__used_asset__/pic_sonde_data_with_annotations.png?raw=true "sonde_data_with_annotations")
 
 The sondes data is additionally xor-scrambled before sending, but not as a crude way of stopping us from decoding it, but to make sure that there always lots of 0-1 changes in the data as the the receiver has to synchronize on the transmission baud rate. This is called data whitening. The xor-value is a 64 byte long pseudorandom number generated with a known lfsr and thus can be hardcoded into the decoder. If we descramble our header from before, 0x10B6CA11229612F8, with the first 8 bytes from the mask, 0x96833E51B1490898 by bitwise xor-ing it, we get 0x8635F44093DF1A60, which we refer to as part of the raw sonde data, which is to be analyzed further.
 
@@ -95,13 +94,15 @@ So here are steps two and four in our decoding chain.
 
 If you did all of the above, you will end up with a frame which will look somewhat like this (except you had a sonde which transmitts an exteded frame, for example an ozone sonde)
 
-###PIC SGP FRAME without legend###
+![frame_format_rs41-sgp](__used_asset__/pic_frame_format_rs41-sgp.png?raw=true "frame_format_rs41-sgp")
 
 The general structure of each frame is as follows.
 
 Bytes [0x000-0x007] contain 8 bytes header, which is always the same.
 
 After that follow 48 bytes of reed-solomon error correction data at [0x008-0x037], which can be used to identify and correct transmission errors.
+
+Byte [0x038] encodes the frame type and is 0x0F for a regular, and 0xF0 for an extended frame.
 
 And after this there is a varying number of blocks, which share a common structure. A block consist of 2 bytes head, its data, and two byters tail. The first byte of the head is the block id which is unique for each type of block. The second byte is the length of the block, without head and tail. The tail finally is the CRC-16 over the data part of the block.
 
