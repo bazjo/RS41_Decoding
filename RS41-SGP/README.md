@@ -2,7 +2,7 @@
 The RS41-SGP is the sonde mos often used in germany, and as it's frame has very much the same structure as the one of the -SG, the main examination shall be conducted only here.
 
 A Frame of a RS41-SGP looks like the following
-![RS41-SGP_frame](__used_asset__/pic_RS41-SGP_frame.png?raw=true "RS41-SGP_frame")
+![rs41-sgp_frame](__used_asset__/pic_rs41-sgp_frame.png?raw=true "rs41-sgp_frame")
 
 There are six different blocks inside this frame:
 1. [\[0x039-0x064\] 44(40) Byte 79-STATUS](#79-STATUS)
