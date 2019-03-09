@@ -1,16 +1,9 @@
-
-# Introduction
+# RS41 Frame Decoding
 This repositories purpose is to explain how the radiosonde Vaisala RS41 transmitts it's data to the ground station, how third parties can obtain the data as well as decode and interpret it.
 
 For general information about radiosondes check out [Wikipedia](https://de.wikipedia.org/wiki/Radiosonde).
 
 For more information about the RS41 check out [my website](https://sondehunt.de).
-
-My findings are really nothing new, at the end this repo is, for the most part, just a n extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
-
-First I will explain a little how FSK Modulation works an how we can obtain the raw bytes sent. Then I will talk about the general Frame structure. Detailed explanations on the different RS41 models can be found in the appropiate files/folders.
-
-There is no actual decoder in this repo, just the knowledge on how to build one.  However, I would like to add a simple PoC-style decoder, most likely as a C++ WPF application, at some point.
 
 Corrections and addition are always welcome, just fork the repo, edit accordingly and file a merge request.
 
@@ -20,6 +13,19 @@ Corrections and addition are always welcome, just fork the repo, edit accordingl
 * explain how the Reed-Solomon-ECC works
 * everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
 * obtain and analyze data from 1.68 GHz RS41-D
+
+# Introduction
+
+My findings are really nothing new, at the end this repo is, for the most part, just a n extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
+
+First I will explain a little how FSK Modulation works an how we can obtain the raw bytes sent. Then I will talk about the general Frame structure. Detailed explanations on the different RS41 models can be found in the appropiate files/folders.
+
+There is no actual decoder in this repo, just the knowledge on how to build one.  However, I would like to add a simple PoC-style decoder, most likely as a C++ WPF application, at some point.
+
+* [How to obtain (G)FSK Data in general](#how-to-obtain-gfsk-data-in-general)
+* [How to get from Audio to Data](#how-to-get-from-audio-to-data)
+* [What did we actually obtain here?](#what-did-we-actually-obtain-here)
+* [RS41 Frame Format](#rs41-frame-format)
 
 # How to obtain (G)FSK Data in general
 For a more detailed explanation, refer to [Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying).
@@ -37,6 +43,7 @@ What happens when we decode a FSK-encoded signal with a FM demodulator (e.g. our
 For GFSK it's really the same, just that your rectangle is looking a bit more "messed up" as it effectively was low-pass filtered for transmission.
 
 ###PIC RAW FSK without attachments###
+![pic_whole_frame](__used_asset__/pic_whole_frame.png?raw=true "pic_whole_frame")
 
 This defines the first steps we have to perform with our audio signal.
 
@@ -44,7 +51,7 @@ This defines the first steps we have to perform with our audio signal.
 
    3\. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
 
-# What did we actually obtain here
+# What did we actually obtain here?
 
 The second step above is missing, and that is for a reason. As you know, the RS41 is not transmitting continuously, there is a pause between the frames. As we can see from the datasheet, the sonde is transmitting one frame of data every second at a baud rate of 4800 symbols/second. If we take a look at an audio recording, we can identify two parts which compose a frame.
 
