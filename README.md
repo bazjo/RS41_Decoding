@@ -7,14 +7,14 @@ For more information about the RS41 check out [my website](https://sondehunt.de)
 
 Corrections and addition are always welcome, just fork the repo, edit accordingly and file a merge request.
 
-# ToDo
+## ToDo
 - [ ] find out purpose of various bytes in the STATUS and MEAS Blocks
 - [ ] do further subframe inverstigations
 - [ ] explain how the Reed-Solomon-ECC works
 - [ ] everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
 - [ ] obtain and analyze data from 1.68 GHz RS41-D
 
-# Introduction
+## Introduction
 
 My findings are really nothing new, at the end this repo is, for the most part, just a n extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
 
@@ -27,7 +27,7 @@ There is no actual decoder in this repo, just the knowledge on how to build one.
 3. [What did we actually obtain here?](#what-did-we-actually-obtain-here)
 4. [RS41 Frame Format](#rs41-frame-format)
 
-# How to obtain (G)FSK Data in general
+## How to obtain (G)FSK Data in general
 For a more detailed explanation, refer to [Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying).
 
 At it's core, FSK (Frequency Shift Keying) just is binary FM-Modulation. With FM-Modulation, an analog signal (usually audio) is transmitted by varying the carriers frequency accordingly. Note that not the actual frequency of the carrier at any given moment encodes the frequency of the signal, but rather the gradual change of frequency over time. The actual frequency of the carrier is a way of transmitting the amplitude of the signal. The frequency of the signal is determined by how often the it's amplitude changes polarity, and this is why the speed at which the carrier's frequency changes represents the frequency of the signal. The actual frequency deviation of the carrier is specific for each transmission standard and has to be selected (to some degree) in accordance to the signals bandwith. This is also what differentiates Narrow-Band-FM (NFM) from Wide-Band-FM (FM) and why you have to set your receiver to NFM to be able to decode radiosondes.
@@ -36,7 +36,7 @@ So what is FSK exactly? FSK is a way of sending data, in which every symbol is t
 
 The difference between FSK and GFSK is that GFSK transitions more smoothly between the symbols, which makes the spectrum "nicer". For the purpose of this examination, we don't need to worry about this fact so much.
 
-# How to get from Audio to Data
+## How to get from Audio to Data
 
 What happens when we decode a FSK-encoded signal with a FM demodulator (e.g. our receiver or RTL-SDR)? The FM decoder just sees the rapid change between two frequencies. During the change, there is a very high frequency, and while the symbols are sent, there is no change at all. What waveform does that remind us of - a rectangle, right! So what comes out of our receiver really is just the binary bitstream which endodes the sondes data. However, the receiver does not know anything about the symbols are defined, which means that a 1 might end up as a 0 and vice versa, meaning the signal might be inverted.
 
@@ -50,7 +50,7 @@ This defines the first steps we have to perform with our audio signal.
 
    3\. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
 
-# What did we actually obtain here?
+## What did we actually obtain here?
 
 The second step above is missing, and that is for a reason. As you know, the RS41 is not transmitting continuously, there is a pause between the frames. As we can see from the datasheet, the sonde is transmitting one frame of data every second at a baud rate of 4800 symbols/second. If we take a look at an audio recording, we can identify two parts which compose a frame.
 
@@ -90,7 +90,7 @@ So here are steps two and four in our decoding chain.
 
    5\. Descramble the frame by xor-ing it with the known pseudorandom sequence.
 
-# RS41 Frame Format
+## RS41 Frame Format
 
 If you did all of the above, you will end up with a frame which will look somewhat like this (except you had a sonde which transmitts an exteded frame, for example an ozone sonde)
 
