@@ -13,7 +13,7 @@ There are six different blocks inside this frame:
 5. [7B-GPSPOS](#7B-GPSPOS)
 6. [76-EMPTY](#76-EMPTY)
 
-Also there an examination of the [subframe](#Subframe)
+Also there an examination of the [subframe](#Subframe).
 
 # \#79-STATUS
 The 79-STATUS block includes such things as Frame#, Serial and battery voltage, but also there are some bytes whose purpose is not known at this time. Any guesses are welcome.
