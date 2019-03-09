@@ -8,11 +8,11 @@ For more information about the RS41 check out [my website](https://sondehunt.de)
 Corrections and addition are always welcome, just fork the repo, edit accordingly and file a merge request.
 
 # ToDo
-* find out purpose of various bytes in the STATUS and MEAS Blocks
-* do further subframe inverstigations
-* explain how the Reed-Solomon-ECC works
-* everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
-* obtain and analyze data from 1.68 GHz RS41-D
+- [ ] find out purpose of various bytes in the STATUS and MEAS Blocks
+- [ ] do further subframe inverstigations
+- [ ] explain how the Reed-Solomon-ECC works
+- [ ] everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
+- [ ] obtain and analyze data from 1.68 GHz RS41-D
 
 # Introduction
 
@@ -22,10 +22,10 @@ First I will explain a little how FSK Modulation works an how we can obtain the 
 
 There is no actual decoder in this repo, just the knowledge on how to build one.  However, I would like to add a simple PoC-style decoder, most likely as a C++ WPF application, at some point.
 
-* [How to obtain (G)FSK Data in general](#how-to-obtain-gfsk-data-in-general)
-* [How to get from Audio to Data](#how-to-get-from-audio-to-data)
-* [What did we actually obtain here?](#what-did-we-actually-obtain-here)
-* [RS41 Frame Format](#rs41-frame-format)
+1. [How to obtain (G)FSK Data in general](#how-to-obtain-gfsk-data-in-general)
+2. [How to get from Audio to Data](#how-to-get-from-audio-to-data)
+3. [What did we actually obtain here?](#what-did-we-actually-obtain-here)
+4. [RS41 Frame Format](#rs41-frame-format)
 
 # How to obtain (G)FSK Data in general
 For a more detailed explanation, refer to [Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying).
