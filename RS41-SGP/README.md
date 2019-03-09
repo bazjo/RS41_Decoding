@@ -181,7 +181,7 @@ zilog80s decoder uses the following subframe parts (some additional ones are add
 Frequency ic calculated by the formula `freq = 400 MHz + (freq upper + (freq lower / 255)) * 0.04 MHz`.
 
 | address  | datatype | decoded data | function |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | `[0x002]` | uint8 | `0x80` | freq lower |
 | `[0x003]` | uint8 | 132 | freq upper |
 | `[0x015]` | uint16 | `0x4EF6` = 20214 | firmware version |
