@@ -1,26 +1,19 @@
-# RS41 Frame Decoding
-This repositories purpose is to explain how the radiosonde Vaisala RS41 transmitts it's data to the ground station, how third parties can obtain the data as well as decode and interpret it.
+# RS41-SGP
+The RS41-SGP is the sonde mos often used in germany, and as it's frame has very much the same structure as the one of the -SG, the main examination shall be conducted only here.
 
-For general information about radiosondes check out [Wikipedia](https://de.wikipedia.org/wiki/Radiosonde).
+A Frame of a RS41-SGP looks like the following
+![RS_41-SGP_frame](__used_asset__/pic_RS_41-SGP_frame.png?raw=true "RS_41-SGP_frame")
 
-For more information about the RS41 check out [my website](https://sondehunt.de).
+There are six different blocks inside this frame:
+[\[0x039-0x064\] 44(40) Byte 79-STATUS](#79-STATUS)
+[\[0x065-0x092\] 46(42) Byte 7A-MEAS]
+[\[0x093-0x0B4\] 34(30) Byte 7C-GPSINFO]
+[\[0x0B5-0x111\] 93(89) Byte 7D-GPSRAW]
+[\[0x112-0x12A\] 25(21) Byte 7B-GPSPOS]
+[\[0x12B-0x13F\] 21(17) Byte 76-EMPTY]
 
-Corrections and addition are always welcome, just fork the repo, edit accordingly and file a merge request.
 
-# ToDo
-- [ ] find out purpose of various bytes in the STATUS and MEAS Blocks
-- [ ] do further subframe inverstigations
-- [ ] explain how the Reed-Solomon-ECC works
-- [ ] everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
-- [ ] obtain and analyze data from 1.68 GHz RS41-D
 
-# Introduction
-
-My findings are really nothing new, at the end this repo is, for the most part, just a n extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
-
-First I will explain a little how FSK Modulation works an how we can obtain the raw bytes sent. Then I will talk about the general Frame structure. Detailed explanations on the different RS41 models can be found in the appropiate files/folders.
-
-There is no actual decoder in this repo, just the knowledge on how to build one.  However, I would like to add a simple PoC-style decoder, most likely as a C++ WPF application, at some point.
 
 1. [How to obtain (G)FSK Data in general](#how-to-obtain-gfsk-data-in-general)
 2. [How to get from Audio to Data](#how-to-get-from-audio-to-data)
