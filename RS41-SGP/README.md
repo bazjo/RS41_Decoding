@@ -16,7 +16,7 @@ There are six different blocks inside this frame:
 # \#79-STATUS
 The 79-STATUS block includes such things as Frame#, Serial and battery voltage, but also there are some bytes whose purpose is not known at this time. Any guesses are welcome.
 
-Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently tranmitted is indicated by the Subframe#
+Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently transmitted is indicated by the Subframe#
 
 | address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
@@ -60,4 +60,37 @@ For the hardware side of things, which is also of interest here, take a look at 
 | `[0x28]` |  | `0x0000` |  | static 0x00 |
 | `` |  | `` |  |  |
 
+# \#7C-GPSINFO
+The 79-STATUS block contains GPS status information. It includes the GPS Week and Time of week as well as having twelve slots for SVNs (Space Vehicle Numbers, though whats transmitted are actually PRN#) with the according signal quality. What indication is used there is unknown. the [RS41 Tracker]() plots this value on a scale from 0 to 43, the corresponding values in the RS41 Tracker are in an additional column.
+
+If there are less than 12 satellites tracked, the other slots are 0x00.
+
+| address  | datatype | example data | decoded | RS41Tracker | function |
+| --- | --- | --- | --- | --- |
+| `[0x00]` | uint16 | `0xE607` | 2022 |  | GPS Week |
+| `[0x02]` | uint32 | `0x18FB2512` | 304479000 ms |  | GPS Time of Week |
+| `[0x]` | uint8 | `[0x01]` | 1 |  | Space Vehicle Number Slot 1 |
+| `[0x]` | uint8 | `[0xFB]` | 251 | 42 | Quality Indicator Slot 1 |
+| `[0x]` | uint8 | `[0x11]` | 17 |  | Space Vehicle Number Slot 2 |
+| `[0x]` | uint8 | `[0xF9]` | 249 | 41 | Quality Indicator Slot 2 |
+| `[0x]` | uint8 | `[0x13]` | 19 |  | Space Vehicle Number Slot 3 |
+| `[0x]` | uint8 | `[0xF3]` | 243 | 39 | Quality Indicator Slot 3 |
+| `[0x]` | uint8 | `[0x0B]` | 11 |  | Space Vehicle Number Slot 4 |
+| `[0x]` | uint8 | `[0xFA]` | 250 | 42 | Quality Indicator Slot 4 |
+| `[0x]` | uint8 | `[0x09]` | 9 |  | Space Vehicle Number Slot 5 |
+| `[0x]` | uint8 | `[0x92]` | 146 | 6 | Quality Indicator Slot 5 |
+| `[0x]` | uint8 | `[0x16]` | 22 |  | Space Vehicle Number Slot 6 |
+| `[0x]` | uint8 | `[0xF7]` | 247 | 40 | Quality Indicator Slot 6 |
+| `[0x]` | uint8 | `[0x12]` | 18 |  | Space Vehicle Number Slot 7 |
+| `[0x]` | uint8 | `[0xF7]` | 247 | 40 | Quality Indicator Slot 7 |
+| `[0x]` | uint8 | `[0x03]` | 3 |  | Space Vehicle Number Slot 8 |
+| `[0x]` | uint8 | `[0xFA]` | 250 | 42 | Quality Indicator Slot 8 |
+| `[0x]` | uint8 | `[0x17]` | 23 |  | Space Vehicle Number Slot 9 |
+| `[0x]` | uint8 | `[0xFA]` | 250 | 42 | Quality Indicator Slot 9 |
+| `[0x]` | uint8 | `[0x1F]` | 31 |  | Space Vehicle Number Slot 10 |
+| `[0x]` | uint8 | `[0xF4]` | 244 | 40 | Quality Indicator Slot 10 |
+| `[0x]` | uint8 | `[0x0E]` | 14 |  | Space Vehicle Number Slot 11 |
+| `[0x]` | uint8 | `[0xF4]` | 244 | 40 | Quality Indicator Slot 11 |
+| `[0x]` | uint8 | `[0x0C]` | 12 |  | Space Vehicle Number Slot 12 |
+| `[0x]` | uint8 | `[0x91]` | 145 | 5 | Quality Indicator Slot 12 |
 
