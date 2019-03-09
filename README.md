@@ -9,10 +9,10 @@ Corrections and addition are always welcome, just fork the repo, edit accordingl
 
 # ToDo
 - [ ] find out purpose of various bytes in the STATUS and MEAS Blocks
-* do further subframe inverstigations
-* explain how the Reed-Solomon-ECC works
-* everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
-* obtain and analyze data from 1.68 GHz RS41-D
+- [ ] do further subframe inverstigations
+- [ ] explain how the Reed-Solomon-ECC works
+- [ ] everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
+- [ ] obtain and analyze data from 1.68 GHz RS41-D
 
 # Introduction
 
