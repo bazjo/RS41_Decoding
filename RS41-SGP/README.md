@@ -66,7 +66,7 @@ The 79-STATUS block contains GPS status information. It includes the GPS Week an
 If there are less than 12 satellites tracked, the other slots are 0x00.
 
 | address  | datatype | example data | decoded | RS41Tracker | function |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | `[0x00]` | uint16 | `0xE607` | 2022 |  | GPS Week |
 | `[0x02]` | uint32 | `0x18FB2512` | 304479000 ms |  | GPS Time of Week |
 | `[0x]` | uint8 | `[0x01]` | 1 |  | Space Vehicle Number Slot 1 |
