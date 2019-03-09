@@ -18,7 +18,7 @@ The 79-STATUS block includes such things as Frame#, Serial and battery voltage, 
 
 Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently tranmitted is indicated by the Subframe#
 
-| start address  | datatype | example data | decoded | function |
+| address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
 | `[0x00]` | uint8 | `0x031E` | 7683 | Frame# |
 | `[0x02]` | char[8] | `0x5032373430333837` | P2740387 | Serial |
@@ -31,16 +31,5 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 | `[0x18]` | uint8[16] | `0xC966B54100004040FFFFFFC6FFFFFFC6` |  | Subframe |
 | `` |  | `` |  |  |
 
-```
-[0x00] 0x031E uint8 Frame# (7683)
-[0x02] 0x5032373430333837 char[8] Serial (P2740387)
-[0x0A] 0x1A0000 uint24 battery voltage * 10 (2.6)
-[0x0D] 0x030000 uint24? mostly static value (3) -purpose unknown
-[0x10] 0x150000 uint24? changes between 0x13 and 0x16 -purpose unknown
-[0x13] 0x5D increases and decreases very slowly -purpose unknown
-[0x14] 0x000732 static value 0x000732 -purpose unknown
-[0x17] 0x20 Subframe# (32/51)
-[0x18] 0xC966B54100004040FFFFFFC6FFFFFFC6 Subframe
-```
 
 
