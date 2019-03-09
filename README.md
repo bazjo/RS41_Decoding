@@ -40,8 +40,9 @@ For GFSK it's really the same, just that your rectangle is looking a bit more "m
 
 This defines the first steps we have to perform with our audio signal.
 
-Step 1. Check for every sign change in the received audio file and interpret it as a byte change.
-Step 3. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
+    1/. Check for every sign change in the received audio file and interpret it as a byte change.
+
+    3/. Check whether the signal might be inverted due to the reveiver and correct if neccessary.
 
 # What did we actually obtain here
 
@@ -77,9 +78,11 @@ The whole XOR-mask is as follows:
 
 So here are steps two and four in our decoding chain.
 
-Step 2. Check for sign changes that correspond to the bitate of the sonde and find out whether the recieved data matches the known preamble or header. If that is the case, get the raw data for the rest of the frame and start processing it.
-Step 4. Transpose the bitwise little-endian to a bitwise big-endian.
-Step 5. Descramble the frame by xor-ing it with the known pseudorandom sequence.
+2/. Check for sign changes that correspond to the bitate of the sonde and find out whether the recieved data matches the known preamble or header. If that is the case, get the raw data for the rest of the frame and start processing it.
+
+4/. Transpose the bitwise little-endian to a bitwise big-endian.
+
+5/. Descramble the frame by xor-ing it with the known pseudorandom sequence.
 
 # RS41 Frame Format
 
