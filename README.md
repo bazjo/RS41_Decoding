@@ -102,6 +102,8 @@ Bytes [0x000-0x007] contain 8 bytes header, which is always the same.
 
 After that follow 48 bytes of reed-solomon error correction data at [0x008-0x037], which can be used to identify and correct transmission errors.
 
+Byte [0x038] encodes the frame type and is 0x0F for a regular, and 0xF0 for an extended frame.
+
 And after this there is a varying number of blocks, which share a common structure. A block consist of 2 bytes head, its data, and two byters tail. The first byte of the head is the block id which is unique for each type of block. The second byte is the length of the block, without head and tail. The tail finally is the CRC-16 over the data part of the block.
 
 Now, please go to the right file/folder for your type of sonde and continue reading there. You should also keep in mind that the data is still bytewise little-endian encoded.
