@@ -8,13 +8,13 @@ A Frame of a RS41-SGM looks like the following
 ![rs41-sgp_frame](__used_asset__/pic_rs41-sgp_frame.png?raw=true "rs41-sgp_frame")
 
 There are three different blocks inside this frame:
-1. [79-STATUS](#79-STATUS)
-2. [80-ENCRYPT](#80-ENCRYPT)
-3. [76-EMPTY](#76-EMPTY)
+1. [79-STATUS](79-STATUS)
+2. [80-ENCRYPT](80-ENCRYPT)
+3. [76-EMPTY](76-EMPTY)
 
 Also there an examination of the [subframe](#Subframe).
 
-## \#79-STATUS
+## 79-STATUS
 The 79-STATUS is fot hte most part identical to a regular RS41. At Position `[0x0D]` there might be a small difference.
 
 The subframe only consist of one part, which is the Subframe #51. It is discussed [further down](#subframe).
@@ -31,12 +31,12 @@ The subframe only consist of one part, which is the Subframe #51. It is discusse
 | `[0x17]` | uint8 | `0x32` | 51/51 | Subframe# |
 | `[0x18]` | uint8[16] | `0xFFFF63ED60020700F6F6C4011A650000` |  | Subframe |
 
-## \#80-ENCRYPT
+## 80-ENCRYPT
 The 80-ENCRYPT block contains the encrypted GPS and PTU data.
 
 The encrypted data consist (without head and tail) of 167 bytes. Maybe this odd number contains a clue to what crypto is used. The regular PTU and GPS data in a regular frame would be (without heads and tails) 182 bytes long, which is 16 bytes more. 12 bytes could be left away in the MEAS section for the pressure sensor, but what about the remaining four bytes?
 
-## \#76-EMPTY
+## 76-EMPTY
 The 76-EMPTY block just contains a variable amount of zeros to fill up some space.
 
 ## Subframe
