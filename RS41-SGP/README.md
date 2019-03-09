@@ -15,7 +15,7 @@ There are six different blocks inside this frame:
 
 Also there an examination of the [subframe](#Subframe).
 
-## \#79-STATUS
+## 79-STATUS
 The 79-STATUS block includes such things as Frame#, Serial and battery voltage, but also there are some bytes whose purpose is not known at this time. Any guesses are welcome.
 
 Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently transmitted is indicated by the Subframe#
@@ -32,7 +32,7 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 | `[0x17]` | uint8 | `0x20` | 32/51 | Subframe# |
 | `[0x18]` | uint8[16] | `0xC966B54100004040FFFFFFC6FFFFFFC6` |  | Subframe |
 
-## \#7A-MEAS
+## 7A-MEAS
 The 7A-MEAS block contains all the infomation about the PTU measurements.
 
 There are two temperature sensors in the sonde, on for the actual temperature and one on the heated humidity sensor. Those are PT1000. Additionally, there are cpacitive sensors for humidity and pressure. For each type of measurement, there are additional references.
@@ -60,7 +60,7 @@ For the hardware side of things, which is also of interest here, take a look at 
 | `[0x26]` | uint16? | `0xFBFB` |  | some kind of counter which increments around every 4 frames -purpose unknown |
 | `[0x28]` |  | `0x0000` |  | static 0x00 -purpose unknown |
 
-## \#7C-GPSINFO
+## 7C-GPSINFO
 The 7C-GPSINFO block contains GPS status information. It includes the GPS Week and Time of week as well as having twelve slots for SVNs (Space Vehicle Numbers, though whats transmitted are actually PRN#) with the according signal quality. What indication is used there is unknown. the [RS41 Tracker](http://escursioni.altervista.org/Radiosonde/) plots this value on a scale from 0 to 43, the corresponding values in the RS41 Tracker are in an additional column.
 
 If there are less than 12 satellites tracked, the other slots are 0x00.
@@ -94,7 +94,7 @@ If there are less than 12 satellites tracked, the other slots are 0x00.
 | `[0x1C]` | uint8 | `0x0C` | 12 |  | Space Vehicle Number Slot 12 |
 | `[0x1D]` | uint8 | `0x91` | 145 | 5 | Quality Indicator Slot 12 |
 
-## \#7D-GPSRAW
+## 7D-GPSRAW
 The 7D-GPSRAW block contains the raw doppler shift GPS data to decode the GPS Position in a similar way as with the old RS92. This Data is for the most part not neccesary.
 
 The prMes and doMes are encoded weirdly, I haven't played around with them myself and just copied the explanation from zilog80s documentation.
@@ -130,7 +130,7 @@ If there are less than 12 satellites tracked, the other slots are 0x00.
 | `[0x52]` | uint32 | `0xACA8BE1D` | PR12 |
 | `[0x56]` | uint24 | `0xB4E3FF` | DP12 |
 
-## \#7B-GPSPOS
+## 7B-GPSPOS
 The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format, which needs to be converted to the usual lat/lon format.
 
 | address  | datatype | example data | decoded | function |
@@ -145,7 +145,7 @@ The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format
 | `[0x13]` | uint8 | `0x01` | 10 cm/s | sAcc/10 Speed Accuracy Estimate |
 | `[0x14]` | uint8 | `0x0C` | 1.2 | pDOP\*10 Position DOP |
 
-## \#76-EMPTY
+## 76-EMPTY
 The 76-EMPTY block just contains a variable amount of zeros to fill up some space.
 
 ## Subframe
