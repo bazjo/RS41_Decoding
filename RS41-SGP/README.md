@@ -29,7 +29,6 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 | `[0x14]` |  | `0x000732` |  | static value -purpose unknown |
 | `[0x17]` | uint8 | `0x20` | 32/51 | Subframe# |
 | `[0x18]` | uint8[16] | `0xC966B54100004040FFFFFFC6FFFFFFC6` |  | Subframe |
-| `` |  | `` |  |  |
 
 # \#7A-MEAS
 The 7A-MEAS block contains all the infomation about the PTU measurements.
@@ -58,7 +57,6 @@ For the hardware side of things, which is also of interest here, take a look at 
 | `[0x24]` |  | `0x0000` |  | static 0x00 -purpose unknown |
 | `[0x26]` | uint16? | `0xFBFB` |  | some kind of counter which increments around every 4 frames -purpose unknown |
 | `[0x28]` |  | `0x0000` |  | static 0x00 -purpose unknown |
-| `` |  | `` |  |  |
 
 # \#7C-GPSINFO
 The 7C-GPSINFO block contains GPS status information. It includes the GPS Week and Time of week as well as having twelve slots for SVNs (Space Vehicle Numbers, though whats transmitted are actually PRN#) with the according signal quality. What indication is used there is unknown. the [RS41 Tracker](http://escursioni.altervista.org/Radiosonde/) plots this value on a scale from 0 to 43, the corresponding values in the RS41 Tracker are in an additional column.
@@ -130,5 +128,18 @@ If there are less than 12 satellites tracked, the other slots are 0x00.
 | `[0x52]` | uint32 | `0xACA8BE1D` | PR12 |
 | `[0x56]` | uint24 | `0xB4E3FF` | DP12 |
 
+# \#7B-GPSPOS
+The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format, which needs to be converted to the usual lat/lon format.
 
+| address  | datatype | example data | decoded | function |
+| --- | --- | --- | --- | --- |
+| `[0x00]` | uint32 | `0x08EAB417` | 397732360 cm | ECEF Position X |
+| `[0x04]` | uint32 | `0x96B0F103` | 66171030 cm | ECEF Position Y |
+| `[0x08]` | uint32 | `0xF65D6D1D` | 493706742 cm | ECEF Position Z |
+| `[0x0C]` | uint16 | `0x4CFD` | -692 cm/s | ECEF Velocity X |
+| `[0x0E]` | uint16 | `0x8FF5` | -2673 cm/s | ECEF Velocity Y |
+| `[0x10]` | uint16 | `0x3700` | 55 cm/s | ECEF Velocity Z |
+| `[0x12]` | uint8 | `0x0D` | 13 | Number of SVs used in Nav Solution |
+| `[0x13]` | uint8 | `0x01` | 10 cm/s | sAcc/10 Speed Accuracy Estimate |
+| `[0x14]` | uint8 | `0x0C` | 1.2 | pDOP\*10 Position DOP |
 
