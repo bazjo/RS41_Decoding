@@ -19,6 +19,7 @@ The 79-STATUS block includes such things as Frame#, Serial and battery voltage, 
 Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 bytes, including such things as calibration values. The Subframe is discussed [further down](#subframe). The part of the subframe, which is currently tranmitted is indicated by the Subframe#
 
 | start address  | datatype | example data | decoded | function |
+| --- | --- | --- | --- | --- |
 | ´[0x00]´ | uint8 | ´0x031E´ | 7683 | Frame# |
 | ´[0x02]´ | char[8] | ´0x5032373430333837´ | P2740387 | Serial |
 |  |  |  |  |  |
