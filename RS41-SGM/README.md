@@ -8,9 +8,9 @@ A Frame of a RS41-SGM looks like the following
 ![rs41-sgp_frame](__used_asset__/pic_rs41-sgp_frame.png?raw=true "rs41-sgp_frame")
 
 There are three different blocks inside this frame:
-1. [79-STATUS](79-STATUS)
-2. [80-ENCRYPT](80-ENCRYPT)
-3. [76-EMPTY](76-EMPTY)
+1. [79-STATUS](#79-STATUS)
+2. [80-ENCRYPT](#80-ENCRYPT)
+3. [76-EMPTY](#76-EMPTY)
 
 Also there an examination of the [subframe](#Subframe).
 
