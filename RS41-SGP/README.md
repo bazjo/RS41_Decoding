@@ -20,9 +20,16 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 
 | start address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
-| ´[0x00]´ | uint8 | ´0x031E´ | 7683 | Frame# |
-| ´[0x02]´ | char[8] | ´0x5032373430333837´ | P2740387 | Serial |
-|  |  |  |  |  |
+| `[0x00]` | uint8 | `0x031E` | 7683 | Frame# |
+| `[0x02]` | char[8] | `0x5032373430333837` | P2740387 | Serial |
+| `[0x0A]` | uint24 | `0x1A0000` | 2.6 | battery voltage * 10 |
+| `[0x0D]` | uint24? | `0x030000` | 3 | mostly static value -purpose unknown |
+| `[0x10]` | uint24? | `0x150000` |  |changes between 0x13 and 0x16 -purpose unknown  |
+| `[0x13]` |  | `0x5D` |  | increases and decreases very slowly -purpose unknown |
+| `[0x14]` |  | `0x000732` |  | static value -purpose unknown |
+| `[0x17]` | uint8 | `0x20` | 32/51 | Subframe# |
+| `[0x18]` | uint8[16] | `0xC966B54100004040FFFFFFC6FFFFFFC6` |  | Subframe |
+| `` |  | `` |  |  |
 
 ```
 [0x00] 0x031E uint8 Frame# (7683)
