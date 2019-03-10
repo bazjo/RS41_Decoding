@@ -6,9 +6,9 @@ A Frame of a RS41-SGP looks like the following
 
 ![rs41-sgp_frame](__used_asset__/pic_rs41-sgp_frame.png?raw=true "rs41-sgp_frame")
 
-Only the [7E-XDATA](#7E-XDATA)block is to be discussed here. For all other blocks, please refer to the RS41-SGP subfolder.
+Only the [7E-XDATA](#7E-XDATA) block is to be discussed here. For all other blocks, please refer to the RS41-SGP subfolder.
 
-There is also a quick introduction to [XDATA](#7XDATA) and the [OIF411 message format](#OIF411-message-format).
+There is also a quick introduction to [XDATA](#XDATA) and the [OIF411 message format](#OIF411-message-format).
 
 ## XDATA
 XDATA is a standardized way of connecting external instruments to radiosondes and is supported by many manufactures. It was originally developed by Jim Wendell (bobasaurus) at [NOAA](https://www.esrl.noaa.gov/gmd/ozwv/wvap/sw.html).
@@ -20,16 +20,28 @@ A XDATA message has the form `"xdata=IDNODATA"` with `"xdata="` being the header
 ## OIF411 message format
 Most often, the XDATA interface on the RS41 is used to connect an OIF411 ozone interface board from Vaisala. It has two tranmission modes. The Measurement Data is what's normally send out, but once a minute the ID Data is send out instead.
 
-### Measurement data
-| address  | datatype | example data | decoded | function |
+### Measurement Data
+The Measurement Data is 20 ASCII chars long.
+| ASCII start char  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
-| `[0x00]` | uint8 | `0x05` | 5 | Instrument Type |
-| `[0x02]` | uint8 | `0x01` | 1 | Daisychain Number |
-| `[0x0A]` | MSB sign bit + uint15 | `0x08CA` | 22.50 °C | Ozone Pump Temperature * 0.01 °C |
-| `[0x0D]` | uint20 | `0x186A0` | 10.0000 uA | Ozone Current \* 100 nA |
-| `[0x10]` | uint8 | `0x75` | 11.7 V | Battery Voltage \* 0.1 V |
-| `[0x13]` | uint12 | `0x0B6` | 182 mA | Ozone Pump Current \* 1 mA |
-| `[0x14]` | uint8 | `0x37` | 5.5 V | External Voltage \* 0.1 V |
+| `0` | uint8 | `0x05` | 5 | Instrument Type |
+| `2` | uint8 | `0x01` | 1 | Daisychain Number |
+| `4` | MSB sign bit + uint15 | `0x08CA` | 22.50 °C | Ozone Pump Temperature * 0.01 °C |
+| `8` | uint20 | `0x186A0` | 10.0000 uA | Ozone Current \* 100 nA |
+| `13` | uint8 | `0x75` | 11.7 V | Battery Voltage \* 0.1 V |
+| `15` | uint12 | `0x0B6` | 182 mA | Ozone Pump Current \* 1 mA |
+| `18` | uint8 | `0x37` | 5.5 V | External Voltage \* 0.1 V |
+
+### ID Data
+The Measurement Data is 21 ASCII chars long.
+| ASCII start char  | datatype | example data | decoded | function |
+| --- | --- | --- | --- | --- |
+| `0` | uint8 | `0x05` | 5 | Instrument Type |
+| `2` | uint8 | `0x01` | 1 | Daisychain Number |
+| `4` | ASCII chars | `G1234567` | G1234567 | OIF411 Serial Number |
+| `12` | uint16 | `0x0001` | no calibration | Diagnostic Word (bit 0 set = no calibration) |
+| `16` | uint16 | `000A` | 0.1 | Software Version \10 |
+| `20` | ASCII char | `I` | I | ID Data Identifier |
 
 ## 7E-XDATA
 The XDATA block has a variable length and contains the ASCII characters received via XDATA, without the "xdata=" preambel. As not tests with more than one XDATA instrument have been conducted yet, nothing is known how multiple XDATA messages are sent.
