@@ -5,13 +5,14 @@ For general information about radiosondes check out [Wikipedia](https://en.wikip
 
 For more information about the RS41 check out [my website](https://sondehunt.de).
 
-Corrections and addition are always welcome, just fork the repo, edit accordingly and file a merge request.
+Corrections and additions are always welcome, just fork the repo, edit accordingly and file a merge request.
 
 ## ToDo
 - [ ] find out purpose of various bytes in the STATUS and MEAS Blocks
 - [ ] do further subframe inverstigations
 - [ ] explain how the Reed-Solomon-ECC works
-- [ ] everything about the extended length frames for xdata (and maybe SGM radio silence mode) is missing
+- [ ] add information on xdata other than for regular ozone soundings
+- [ ] obtain and analyze data from RS41-SGMs radio silence mode
 - [ ] obtain and analyze data from 1.68 GHz RS41-D
 
 ## Introduction
