@@ -22,6 +22,7 @@ Most often, the XDATA interface on the RS41 is used to connect an OIF411 ozone i
 
 ### Measurement Data
 The Measurement Data is 20 ASCII chars long.
+
 | ASCII start char  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
 | `0` | uint8 | `0x05` | 5 | Instrument Type |
@@ -34,6 +35,7 @@ The Measurement Data is 20 ASCII chars long.
 
 ### ID Data
 The Measurement Data is 21 ASCII chars long.
+
 | ASCII start char  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
 | `0` | uint8 | `0x05` | 5 | Instrument Type |
