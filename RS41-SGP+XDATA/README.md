@@ -40,7 +40,7 @@ The Measurement Data is 21 ASCII chars long.
 | `2` | uint8 | `0x01` | 1 | Daisychain Number |
 | `4` | ASCII chars | `G1234567` | G1234567 | OIF411 Serial Number |
 | `12` | uint16 | `0x0001` | no calibration | Diagnostic Word (bit 0 set = no calibration) |
-| `16` | uint16 | `000A` | 0.1 | Software Version \10 |
+| `16` | uint16 | `000A` | 0.1 | Software Version /10 |
 | `20` | ASCII char | `I` | I | ID Data Identifier |
 
 ## 7E-XDATA
