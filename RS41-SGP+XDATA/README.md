@@ -46,7 +46,7 @@ The Measurement Data is 21 ASCII chars long.
 | `20` | ASCII char | `I` | I | ID Data Identifier |
 
 ## 7E-XDATA
-The XDATA block has a variable length and contains the ASCII characters received via XDATA, without the "xdata=" preambel. As not tests with more than one XDATA instrument have been conducted yet, nothing is known how multiple XDATA messages are sent.
+The XDATA block has a variable length and contains the ASCII characters received via XDATA, without the "xdata=" preambel. As no tests with more than one XDATA instrument have been conducted yet, nothing is known how multiple XDATA messages are sent.
 
 ## Subframe
 There are no differences known between the regular subframe and the subframe with XDATA attached. There is no possibiltiy for XDATA instruments to send our there calibration values via the subframe.
