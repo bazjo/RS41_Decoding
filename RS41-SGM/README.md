@@ -24,7 +24,7 @@ The subframe only consist of one part, which is the Subframe #51. It is discusse
 | `[0x00]` | uint8 | `0xDE18` | 6366 | Frame# |
 | `[0x02]` | char[8] | `0x4E35313430313032` | N5140102 | Serial |
 | `[0x0A]` | uint24 | `0x1A0000` | 2.6 V | battery voltage * 10 |
-| `[0x0D]` | uint24? | `0x010003` | 3 | this value is different to a regular RS-41 -purpose unknown |
+| `[0x0D]` | uint24? | `0x010003` | 3 | this value is different to a regular RS41 -purpose unknown |
 | `[0x10]` | uint24? | `0x130000` |  |changes between 0x13 and 0x16 -purpose unknown  |
 | `[0x13]` |  | `0x2E` |  | increases and decreases very slowly -purpose unknown |
 | `[0x14]` |  | `0x000732` |  | static value -purpose unknown |
