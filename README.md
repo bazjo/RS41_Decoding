@@ -1,4 +1,4 @@
-# RS41 Frame Decoding
+# RS41 Decoding
 This repositories purpose is to explain how the radiosonde Vaisala RS41 transmitts it's data to the ground station, how third parties can obtain the data as well as decode and interpret it.
 
 For general information about radiosondes check out [Wikipedia](https://en.wikipedia.org/wiki/Radiosonde).
