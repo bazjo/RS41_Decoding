@@ -17,7 +17,7 @@ Corrections and additions are always welcome, just fork the repo, edit according
 
 ## Introduction
 
-My findings are really nothing new, at the end this repo is, for the most part, just a n extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
+My findings are really nothing new, at the end this repo is, for the most part, just an extended documentation of [Zilog80s decoder](https://github.com/rs1729/RS), to whom most of the kudos belong.
 
 First I will explain a little how FSK Modulation works an how we can obtain the raw bytes sent. Then I will talk about the general Frame structure. Detailed explanations on the different RS41 models can be found in the appropiate files/folders.
 
