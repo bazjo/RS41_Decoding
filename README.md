@@ -3,7 +3,7 @@ This repositories purpose is to explain how the radiosonde Vaisala RS41 transmit
 
 For general information about radiosondes check out [Wikipedia](https://en.wikipedia.org/wiki/Radiosonde).
 
-For more information about the RS41 check out [my website](https://sondehunt.de).
+For more information about the RS41 check out [my website](https://sondehunt.de/language/en/vaisala-rs41).
 
 Corrections and additions are always welcome, just fork the repo, edit accordingly and file a merge request.
 
