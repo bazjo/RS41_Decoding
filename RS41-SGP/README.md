@@ -43,7 +43,6 @@ For the hardware side of things, which is also of interest here, take a look at 
 
 | address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
-| `[0x00]` | uint8 | `0x031E` | 7683 | Frame# |
 | `[0x00]` | uint24 | `0xCF5202` | 152271 | Temperature Tempmeas Main |
 | `[0x03]` | uint24 | `0x2A0002` | 131114 | Temperature Tempmeas Ref1 |
 | `[0x06]` | uint24 | `0x9CE702` | 190364 | Temperature Tempmeas Ref2 |
