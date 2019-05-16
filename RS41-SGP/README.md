@@ -22,7 +22,7 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 
 | address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
-| `[0x00]` | uint8 | `0x031E` | 7683 | Frame# |
+| `[0x00]` | uint16 | `0x031E` | 7683 | Frame# |
 | `[0x02]` | char[8] | `0x5032373430333837` | P2740387 | Serial |
 | `[0x0A]` | uint24 | `0x1A0000` | 2.6 V | battery voltage * 10 |
 | `[0x0D]` | uint24? | `0x030000` | 3 | mostly static value -purpose unknown |
