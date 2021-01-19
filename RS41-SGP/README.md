@@ -23,12 +23,16 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 | address  | datatype | example data | decoded | function |
 | --- | --- | --- | --- | --- |
 | `[0x00]` | uint16 | `0x031E` | 7683 | Frame# |
-| `[0x02]` | char[8] | `0x5032373430333837` | P2740387 | Serial |
-| `[0x0A]` | uint24 | `0x1A0000` | 2.6 V | battery voltage * 10 |
-| `[0x0D]` | uint24? | `0x030000` | 3 | mostly static value -purpose unknown |
-| `[0x10]` | uint24? | `0x150000` |  |changes between 0x13 and 0x16 -purpose unknown  |
-| `[0x13]` |  | `0x5D` |  | increases and decreases very slowly -purpose unknown |
-| `[0x14]` |  | `0x000732` |  | static value -purpose unknown |
+| `[0x02]` | char[8] | `0x50 0x32 0x37 0x34 0x30 0x33 0x38 0x37` | P2740387 | Serial |
+| `[0x0A]` | uint8 | `0x1A` | 2.6 V | battery voltage * 10 |
+| `[0x0B]` | uint16 | `0x0000` | | Bit field. Purpose unknown |
+| `[0x0D]` | uint16 | `0x0003` | In flight mode, descending | Bit field.<br>**Bit 0**:  0=start phase, 1=flight mode<br>**Bit 1**: 0=ascent, 1=descent<br>**Bit 12**: 0=VBAT ok, 1=VBAT too low<br>Other bits t.b.d. |
+| `[0x0F]` | uint8 | `0x00` |  | Purpose unknown. Only 0 or 6 possible? |
+| `[0x10]` | uint8 | `0x15` | 21°C | Temperature of reference area (cut-out) on PCB |
+| `[0x11]` | uint16 | `0x0000` |  | Bit field (error flags).<br>t.b.d. |
+| `[0x13]` | uint16 | `0x005D` | 93 | PWM (0...1000) of humidity sensor heating |
+| `[0x15]` | uint8 | `0x07` | Max power | Transmit power setting. 0=min, 7=max) |
+| `[0x16]` | uint8 | `0x32` | 50 | Highest possible subframe# |
 | `[0x17]` | uint8 | `0x20` | 32/51 | Subframe# |
 | `[0x18]` | uint8[16] | `0xC966B54100004040FFFFFFC6FFFFFFC6` |  | Subframe |
 
