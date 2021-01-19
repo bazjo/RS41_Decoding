@@ -107,7 +107,7 @@ If there are less than 12 satellites tracked, the other slots are 0x00.
 | address  | datatype | example data | function |
 | --- | --- | --- | --- |
 | `[0x00]` | uint32 | `0x25FC3501` | minPRmes |
-| `[0x04]` |  | `0xFF` | static 0xFF -purpose unknown |
+| `[0x04]` | uint8 | `0xFF` | Fields from UBX MON-HW message:<br>[7:4] jamInd, [3:0] agcCnt<br>Scaling t.b.d. |
 | `[0x05]` | uint32 | `0x3DFDD302` | PR1: prMes = PR/100-minPRmes |
 | `[0x09]` | uint24 | `0x42BF00` | DP1: doMes = -DP/100\*L1/c (int24) |
 | `[0x0C]` | uint32 | `0xC68F520B` | PR2 |
