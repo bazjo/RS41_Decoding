@@ -60,7 +60,7 @@ For the hardware side of things, which is also of interest here, take a look at 
 | `[0x1E]` | uint24 | `0xEEA604` | 304878 | Pressure Ref1 |
 | `[0x21]` | uint24 | `0xFEAE06` | 438014 | Pressure Ref2 |
 | `[0x24]` |  | `0x0000` |  | static 0x00 -purpose unknown |
-| `[0x26]` | uint16? | `0xFBFB` |  | some kind of counter which increments around every 4 frames -purpose unknown |
+| `[0x26]` | int16 | `0xFBFB` | 0xFBFB = -1029<br>-10.29°C | Temperature of pressure sensor module (1/100 °C) |
 | `[0x28]` |  | `0x0000` |  | static 0x00 -purpose unknown |
 
 ## 7C-GPSINFO
