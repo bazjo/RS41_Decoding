@@ -151,6 +151,16 @@ The 7B-GPSPOS block contains the actual position of the sonde in the ECEF format
 ## 76-EMPTY
 The 76-EMPTY block just contains a variable amount of zeros to fill up some space.
 
+## 80-CRYPTO
+The 80-CRYPTO block (167 bytes) contains the payload of the `7F-MEASSHORT` (27 bytes), `7B-GPSPOS` (21 bytes), `7C-GPSINFO` (30 bytes) and `7D-GPSRAW` (89 bytes) blocks in encrypted form (Rabbit cipher).
+
+| address  | datatype |
+| --- | --- |
+| `[0x00...0x1A]` | 7F-MEASSHORT payload |
+| `[0x1B...0x38]` | 7C-GPSINFO payload |
+| `[0x39...0x91]` | 7D-GPSRAW payload |
+| `[0x92...0xA6]` | 7B-GPSPOS payload |
+
 ## Subframe
 The subframe consist of 51 \* 16 = 816 Bytes. It is mostly static, but some parts, for example the last 16 bytes, change quite a lot as is discussed in the section about the RS41-SGMs subframe.
 
