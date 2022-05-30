@@ -208,3 +208,19 @@ Frequency is calculated by the formula `freq = 400 MHz + (freq upper + (freq low
 | `[0x22C]` | char[10] | "P2510419 " | mainboard serial |
 | `[0x243]` | char[10] | "P2670962  " | pressure  serial |
 | `[0x316]` | uint16 | 30600 s | burstkill timer |
+
+### Run-time variable fields (0x320...0x32D)
+Fields 0x32E...0x32F are not used by RS41!
+
+| address  | datatype | function |
+| --- | --- | --- |
+| `[0x320]` | int16 | frames remaining untill kill (-1 = 0xFFFF = inactive) |
+| `[0x322]` | int16 | launch altitude [m], referenced to spherical earth model (R=6371.008 km) |
+| `[0x324]` | uint16 | height [m] above launch site where transition to flight mode happened |
+| `[0x326]` | uint8 | ? (power level) |
+| `[0x327]` | uint8 | ? (# software resets) |
+| `[0x328]` | int8 | CPU temperature [°C] |
+| `[0x329]` | int8 | Radio (Si4032) temperature [°C] |
+| `[0x32A]` | uint16 | Remaining battery capacity |
+| `[0x32C]` | uint8 | Number of discarded UBX (GPS) packets |
+| `[0x32D]` | uint8 | Number of occasions when essential UBX (GPS) packets were missing |
