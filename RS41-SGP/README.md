@@ -39,7 +39,7 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 ## 7A-MEAS
 The 7A-MEAS block contains all the infomation about the PTU measurements.
 
-There are two temperature sensors in the sonde, on for the actual temperature and one on the heated humidity sensor. Those are PT1000. Additionally, there are cpacitive sensors for humidity and pressure. For each type of measurement, there are additional references.
+There are two temperature sensors in the sonde, one for the actual temperature and one on the heated humidity sensor. Those are PT1000. Additionally, there are capacitive sensors for humidity and pressure. For each type of measurement, there are additional references.
 
 What those values actually mean is still unclear, there are a few different formulas for calculating the temperature who are all a bit different. I hope to provide some more information about this at some point. In the meantime, check out [zilog80s](https://github.com/rs1729/RS/tree/master/rs41) code.
 
