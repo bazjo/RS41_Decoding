@@ -63,6 +63,23 @@ For the hardware side of things, which is also of interest here, take a look at 
 | `[0x26]` | int16 | `0xFBFB` | 0xFBFB = -1029<br>-10.29°C | Temperature of pressure sensor module (1/100 °C) |
 | `[0x28]` |  | `0x0000` |  | static 0x00 -purpose unknown |
 
+## 7F-MEASSHORT
+The 7F-MEAS block contains all the infomation about the PTU measurements, but without the option for a pressure sensor. This block is used by RS41-SGM.
+
+See description of `7A-MEAS` for details.
+
+| address  | datatype | example data | decoded | function |
+| --- | --- | --- | --- | --- |
+| `[0x00]` | uint24 | `0xCF5202` | 152271 | Temperature Tempmeas Main |
+| `[0x03]` | uint24 | `0x2A0002` | 131114 | Temperature Tempmeas Ref1 |
+| `[0x06]` | uint24 | `0x9CE702` | 190364 | Temperature Tempmeas Ref2 |
+| `[0x09]` | uint24 | `0x278D08` | 560423 | Humidity Main |
+| `[0x0C]` | uint24 | `0xAF8707` | 493487 | Humidity Ref1 |
+| `[0x0F]` | uint24 | `0x479108` | 561479 | Humidity Ref2 |
+| `[0x12]` | uint24 | `0xCB2B02` | 142283 | Temperature Humimeas Main |
+| `[0x15]` | uint24 | `0x2B0002` | 131115 | Temperature Humimeas Ref1 |
+| `[0x18]` | uint24 | `0x9DE702` | 190365 | Temperature Humimeas Ref2 |
+
 ## 7C-GPSINFO
 The 7C-GPSINFO block contains GPS status information. It includes the GPS Week and Time of week as well as having twelve slots for SVNs (Space Vehicle Numbers, though whats transmitted are actually PRN#) with the according signal quality. What indication is used there is unknown. the [RS41 Tracker](http://escursioni.altervista.org/Radiosonde/) plots this value on a scale from 0 to 43, the corresponding values in the RS41 Tracker are in an additional column.
 
