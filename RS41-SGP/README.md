@@ -27,7 +27,7 @@ Also there is the Subframe, who is transmitted over 51 frames in pieces of 16 by
 | `[0x0A]` | uint8 | `0x1A` | 2.6 V | battery voltage * 10 |
 | `[0x0B]` | uint16 | `0x0000` | | Bit field. Purpose unknown |
 | `[0x0D]` | uint16 | `0x0003` | In flight mode, descending | Bit field.<br>**Bit 0**:  0=start phase, 1=flight mode<br>**Bit 1**: 0=ascent, 1=descent<br>**Bit 12**: 0=VBAT ok, 1=VBAT too low<br>Other bits t.b.d. |
-| `[0x0F]` | uint8 | `0x00` |  | Purpose unknown. Only 0 or 6 possible? |
+| `[0x0F]` | uint8 | `0x00` | Standard sonde | Crypto Mode.<br>**0**=Standard RS41-SG(P)<br>**1,2**=RS41-SGM unencrypted, sends all three GPS blocks (`7B-GPSPOS`, `7C-GPSINFO`, `7D-GPSRAW`), `7F-MEASSHORT` replaces `7A-MEAS`<br>**3,4**=RS41-SGM encrypted, encrypted block `80-CRYPTO` replaces `7F-MEASSHORT`, `7B-GPSPOS`, `7C-GPSINFO` and `7D-GPSRAW`<br>**6**=unknown, appears to indicate broken configuration |
 | `[0x10]` | uint8 | `0x15` | 21°C | Temperature of reference area (cut-out) on PCB |
 | `[0x11]` | uint16 | `0x0000` |  | Bit field (error flags).<br>t.b.d. |
 | `[0x13]` | uint16 | `0x005D` | 93 | PWM (0...1000) of humidity sensor heating |
