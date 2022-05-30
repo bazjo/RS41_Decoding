@@ -72,30 +72,30 @@ If there are less than 12 satellites tracked, the other slots are 0x00.
 | --- | --- | --- | --- | --- | --- |
 | `[0x00]` | uint16 | `0xE607` | 2022 |  | GPS Week |
 | `[0x02]` | uint32 | `0x18FB2512` | 304479000 ms |  | GPS Time of Week |
-| `[0x06]` | uint8 | `0x01` | 1 |  | Space Vehicle Number Slot 1 |
-| `[0x07]` | uint8 | `0xFB` | 251 | 42 | Quality Indicator Slot 1 |
-| `[0x08]` | uint8 | `0x11` | 17 |  | Space Vehicle Number Slot 2 |
-| `[0x09]` | uint8 | `0xF9` | 249 | 41 | Quality Indicator Slot 2 |
-| `[0x0A]` | uint8 | `0x13` | 19 |  | Space Vehicle Number Slot 3 |
-| `[0x0B]` | uint8 | `0xF3` | 243 | 39 | Quality Indicator Slot 3 |
-| `[0x0C]` | uint8 | `0x0B` | 11 |  | Space Vehicle Number Slot 4 |
-| `[0x0D]` | uint8 | `0xFA` | 250 | 42 | Quality Indicator Slot 4 |
-| `[0x0E]` | uint8 | `0x09` | 9 |  | Space Vehicle Number Slot 5 |
-| `[0x0F]` | uint8 | `0x92` | 146 | 6 | Quality Indicator Slot 5 |
-| `[0x10]` | uint8 | `0x16` | 22 |  | Space Vehicle Number Slot 6 |
-| `[0x11]` | uint8 | `0xF7` | 247 | 40 | Quality Indicator Slot 6 |
-| `[0x12]` | uint8 | `0x12` | 18 |  | Space Vehicle Number Slot 7 |
-| `[0x13]` | uint8 | `0xF7` | 247 | 40 | Quality Indicator Slot 7 |
-| `[0x14]` | uint8 | `0x03` | 3 |  | Space Vehicle Number Slot 8 |
-| `[0x15]` | uint8 | `0xFA` | 250 | 42 | Quality Indicator Slot 8 |
-| `[0x16]` | uint8 | `0x17` | 23 |  | Space Vehicle Number Slot 9 |
-| `[0x17]` | uint8 | `0xFA` | 250 | 42 | Quality Indicator Slot 9 |
-| `[0x18]` | uint8 | `0x1F` | 31 |  | Space Vehicle Number Slot 10 |
-| `[0x19]` | uint8 | `0xF4` | 244 | 40 | Quality Indicator Slot 10 |
-| `[0x1A]` | uint8 | `0x0E` | 14 |  | Space Vehicle Number Slot 11 |
-| `[0x1B]` | uint8 | `0xF4` | 244 | 40 | Quality Indicator Slot 11 |
-| `[0x1C]` | uint8 | `0x0C` | 12 |  | Space Vehicle Number Slot 12 |
-| `[0x1D]` | uint8 | `0x91` | 145 | 5 | Quality Indicator Slot 12 |
+| `[0x06]` | uint8 | `0x01` | PRN 1 |  | Space Vehicle Number Slot 1 |
+| `[0x07]` | uint8 | `0xFB` | mesQI=7<br>cno'=27<br>cno=47 dbHz | 42 | Quality Indicator Slot 1<br>32*mesQI + cno'<br>cno'=0 if cno < 20<br>cno'=cno-20 if 20 <= cno <= 50<br>cno'=31 if cno > 50<br>See u-blox6 RXM-RAW message description for details |
+| `[0x08]` | uint8 | `0x11` | PRN 17 |  | Space Vehicle Number Slot 2 |
+| `[0x09]` | uint8 | `0xF9` | mesQI=7<br>cno=45 dbHz | 41 | Quality Indicator Slot 2 |
+| `[0x0A]` | uint8 | `0x13` | PRN 19 |  | Space Vehicle Number Slot 3 |
+| `[0x0B]` | uint8 | `0xF3` | mesQI=7<br>cno=39 dbHz | 39 | Quality Indicator Slot 3 |
+| `[0x0C]` | uint8 | `0x0B` | PRN 11 |  | Space Vehicle Number Slot 4 |
+| `[0x0D]` | uint8 | `0xFA` | mesQI=7<br>cno=46 dbHz | 42 | Quality Indicator Slot 4 |
+| `[0x0E]` | uint8 | `0x09` | PRN 9 |  | Space Vehicle Number Slot 5 |
+| `[0x0F]` | uint8 | `0x92` | mesQI=4<br>cno=38 dbHz | 6 | Quality Indicator Slot 5 |
+| `[0x10]` | uint8 | `0x16` | PRN 22 |  | Space Vehicle Number Slot 6 |
+| `[0x11]` | uint8 | `0xF7` | mesQI=7<br>cno=43 dbHz | 40 | Quality Indicator Slot 6 |
+| `[0x12]` | uint8 | `0x12` | PRN 18 |  | Space Vehicle Number Slot 7 |
+| `[0x13]` | uint8 | `0xF7` | mesQI=7<br>cno=43 dbHz | 40 | Quality Indicator Slot 7 |
+| `[0x14]` | uint8 | `0x03` | PRN 3 |  | Space Vehicle Number Slot 8 |
+| `[0x15]` | uint8 | `0xFA` | mesQI=7<br>cno=46 dbHz | 42 | Quality Indicator Slot 8 |
+| `[0x16]` | uint8 | `0x17` | PRN 23 |  | Space Vehicle Number Slot 9 |
+| `[0x17]` | uint8 | `0xFA` | mesQI=7<br>cno=46 dbHz | 42 | Quality Indicator Slot 9 |
+| `[0x18]` | uint8 | `0x1F` | PRN 31 |  | Space Vehicle Number Slot 10 |
+| `[0x19]` | uint8 | `0xF4` | mesQI=7<br>cno=40 dbHz | 40 | Quality Indicator Slot 10 |
+| `[0x1A]` | uint8 | `0x0E` | PRN 14 |  | Space Vehicle Number Slot 11 |
+| `[0x1B]` | uint8 | `0xF4` | mesQI=7<br>cno=40 dbHz | 40 | Quality Indicator Slot 11 |
+| `[0x1C]` | uint8 | `0x0C` | PRN 12 |  | Space Vehicle Number Slot 12 |
+| `[0x1D]` | uint8 | `0x91` | mesQI=4<br>cno=37 dbHz | 5 | Quality Indicator Slot 12 |
 
 ## 7D-GPSRAW
 The 7D-GPSRAW block contains the raw doppler shift GPS data to decode the GPS Position in a similar way as with the old RS92. This Data is for the most part not neccesary.
